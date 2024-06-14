@@ -1,0 +1,35 @@
+package:
+  name: cfitsio-static
+  version: "4.3.1"
+
+source:
+  path: conan
+
+build:
+  number: 0
+  skip: True  # [not win]
+
+requirements:
+  build:
+    - conan
+  run:
+    - cfitsio
+    - zlib
+
+about:
+  home: http://heasarc.gsfc.nasa.gov/fitsio/fitsio.html
+  license: LicenseRef-fitsio
+  license_file: License.txt
+  summary: A library for reading and writing FITS files
+  description: |
+    CFITSIO is a library of C and Fortran subroutines for reading and writing
+    data files in FITS (Flexible Image Transport System) data format. CFITSIO
+    provides simple high-level routines for reading and writing FITS files that
+    insulate the programmer from the internal complexities of the FITS format.
+    CFITSIO also provides many advanced features for manipulating and filtering
+    the information in FITS files.
+  doc_url: https://heasarc.gsfc.nasa.gov/docs/software/fitsio/quick/quick.html
+
+extra:
+  recipe-maintainers:
+    - feng1m8
