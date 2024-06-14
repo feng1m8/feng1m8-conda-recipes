@@ -1,0 +1,26 @@
+package:
+  name: gsl-static
+  version: "2.7.1"
+
+source:
+  path: conan
+
+build:
+  number: 0
+  skip: True  # [not win]
+
+requirements:
+  build:
+    - conan
+  run:
+    - gsl
+
+about:
+  home: http://www.gnu.org/software/gsl/
+  license: GPL-3.0-or-later
+  license_file: COPYING
+  summary: GNU Scientific Library
+
+extra:
+  recipe-maintainers:
+    - feng1m8
