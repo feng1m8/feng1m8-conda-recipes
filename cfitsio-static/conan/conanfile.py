@@ -10,7 +10,7 @@ class CondaRecipe(ConanFile):
     build_policy = "never"
 
     def requirements(self):
-        self.requires("cfitsio/4.3.1")
+        self.requires("cfitsio/4.4.0")
 
     def layout(self):
         self.folders.generators = 'build'
@@ -26,4 +26,4 @@ class CondaRecipe(ConanFile):
         copy(self, "lib/*", '.', prefix / 'Library')
         rmdir(self, 'lib')
         if 'SRC_DIR' in os.environ:
-            copy(self, "*", Path(dep.package_folder) / 'licenses', os.environ['SRC_DIR'])
+            copy(self, "*", Path(dep.package_folder) / 'licenses', Path(os.environ['SRC_DIR']) / 'licenses')

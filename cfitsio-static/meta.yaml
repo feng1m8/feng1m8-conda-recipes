@@ -1,6 +1,6 @@
 package:
   name: cfitsio-static
-  version: "4.3.1"
+  version: "4.4.0"
 
 source:
   path: conan
@@ -18,8 +18,8 @@ requirements:
 
 about:
   home: http://heasarc.gsfc.nasa.gov/fitsio/fitsio.html
-  license: LicenseRef-fitsio
-  license_file: License.txt
+  license: NASA-1.3
+  license_file: licenses/NASA_Open_Source_Agreement_1.3.txt
   summary: A library for reading and writing FITS files
   description: |
     CFITSIO is a library of C and Fortran subroutines for reading and writing
