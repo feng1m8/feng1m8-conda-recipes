@@ -1,0 +1,26 @@
+package:
+  name: m2-pacman-mirrors
+  version: 20240523.1
+
+source:
+  - url: https://repo.msys2.org/msys/x86_64/pacman-mirrors-20240523-1-any.pkg.tar.zst
+    sha256: 9f8b5f9d24e25738a712d367d02dfefc03a9fc381caa75ab07ab0d798a9e942b
+    folder: binary
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - m2-conda-epoch
+
+about:
+  home: https://www.msys2.org/dev/mirrors/
+  license: GPL
+  summary: |
+    MSYS2 mirror list for use by pacman
+
+extra:
+  recipe-maintainers:
+    - feng1m8
