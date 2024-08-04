@@ -1,6 +1,6 @@
 sed -i 's/-lm//g' configure.ac
 
-autoreconf --install
+autoreconf --ivf
 
 ./configure --prefix=$PREFIX
 

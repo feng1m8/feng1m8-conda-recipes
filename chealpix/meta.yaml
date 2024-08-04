@@ -9,6 +9,8 @@ package:
 source:
   url: "https://sourceforge.net/projects/healpix/files/Healpix_{{ version }}/{{ name }}-{{ version }}.0.tar.gz"
   sha256: "{{ sha256 }}"
+  url: "https://sourceforge.net/p/healpix/code/HEAD/tree/trunk/COPYING?format=raw"
+  sha256: "{{ sha256 }}"
 
 build:
   number: 0
