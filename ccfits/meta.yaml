@@ -1,19 +1,28 @@
+{% set name = "ccfits" %}
+{% set version = "2.6" %}
+{% set sha256 = "c8395e80379df4e2a63b0890166fb47be4b96dff977214e7ed10ea9d3e9e9a9e" %}
+
 package:
-  name: ccfits
-  version: "2.6"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  path: conan
+  url: https://heasarc.gsfc.nasa.gov/docs/software/fitsio/{{ name }}/CCfits-{{ version }}.tar.gz
+  folder: CCfits
+  sha256: {{ sha256 }}
 
 build:
   number: 0
+  script: python %RECIPE_DIR%/build.py
   skip: True  # [not win]
 
 requirements:
   build:
     - conan
   run:
-    - cfitsio
+    - cfitsio >=4.2.0
+  run_constrained:
+    - zlib 1.3.*
 
 about:
   summary: CCfits is an object oriented interface to the cfitsio library. It is designed to make the capabilities of cfitsio available to programmers working in C++. It is written in ANSI C++ and implemented using the C++ Standard Library with namespaces, exception handling, and member template functions.

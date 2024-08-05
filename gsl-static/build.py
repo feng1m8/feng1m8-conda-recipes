@@ -26,20 +26,21 @@ class Make:
                 return
 
     def install(self):
+        path = Path(self.path)
         prefix = Path(os.getenv('PREFIX', '.prefix'))
         lib = prefix / 'Library' / 'lib'
         src = Path(os.getenv('SRC_DIR', '.prefix'))
 
         conanfile = ConanFile()
         if not (lib / 'gsl_static.lib').exists():
-            f.copy(conanfile, 'gsl.lib', Path(self.path) / 'lib', lib)
+            f.copy(conanfile, 'gsl.lib', path / 'lib', lib)
             f.rename(conanfile, lib / 'gsl.lib', lib / 'gsl_static.lib')
 
         if not (lib / 'gslcblas_static.lib').exists():
-            f.copy(conanfile, 'gslcblas.lib', Path(self.path) / 'lib', lib)
+            f.copy(conanfile, 'gslcblas.lib', path / 'lib', lib)
             f.rename(conanfile, lib / 'gslcblas.lib', lib / 'gslcblas_static.lib')
 
-        f.copy(conanfile, '*', Path(self.path) / 'licenses', src)
+        f.copy(conanfile, '*', path / 'licenses', src)
 
 
 if __name__ == '__main__':
