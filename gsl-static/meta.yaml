@@ -1,19 +1,23 @@
+{% set name = "gsl-static" %}
+{% set version = "2.7.1" %}
+
 package:
-  name: gsl-static
-  version: "2.7.1"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  path: conan
+  path: .
 
 build:
   number: 0
+  script: python build.py
   skip: True  # [not win]
 
 requirements:
   build:
     - conan
   run:
-    - gsl
+    - gsl =2.7
 
 about:
   home: http://www.gnu.org/software/gsl/
