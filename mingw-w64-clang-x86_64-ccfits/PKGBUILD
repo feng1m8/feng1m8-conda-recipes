@@ -1,5 +1,3 @@
-# Maintainer: Minato Feng <feng1m8@outlook.com>
-
 _realname=ccfits
 pkgbase=mingw-w64-${_realname}
 pkgname=("${MINGW_PACKAGE_PREFIX}-${_realname}")
