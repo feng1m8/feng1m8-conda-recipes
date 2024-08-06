@@ -1,16 +1,17 @@
 {% set name = "chealpix" %}
 {% set version = "3.30" %}
-{% set sha256 = "dbc5ba0d84d6e5f69bdffe6eb572c206e8fefd5bb187d52bbf9b2763b636dbd7" %}
 
 package:
-  name: "{{ name|lower }}"
+  name: "{{ name }}"
   version: "{{ version }}.0"
 
 source:
-  url: "https://sourceforge.net/projects/healpix/files/Healpix_{{ version }}/{{ name }}-{{ version }}.0.tar.gz"
-  sha256: "{{ sha256 }}"
-  url: "https://sourceforge.net/p/healpix/code/HEAD/tree/trunk/COPYING?format=raw"
-  sha256: "{{ sha256 }}"
+  - url: "https://sourceforge.net/projects/healpix/files/Healpix_{{ version }}/{{ name }}-{{ version }}.0.tar.gz"
+    sha256: "dbc5ba0d84d6e5f69bdffe6eb572c206e8fefd5bb187d52bbf9b2763b636dbd7"
+    folder: "{{ name }}"
+  - url: "https://sourceforge.net/p/healpix/code/HEAD/tree/trunk/COPYING?format=raw"
+    sha256: "e6d6a009505e345fe949e1310334fcb0747f28dae2856759de102ab66b722cb4"
+    fn: "COPYING"
 
 build:
   number: 0

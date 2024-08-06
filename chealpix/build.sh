@@ -1,6 +1,8 @@
+cd chealpix
+
 sed -i 's/-lm//g' configure.ac
 
-autoreconf --ivf
+autoreconf -ivf
 
 ./configure --prefix=$PREFIX
 
