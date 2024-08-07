@@ -12,9 +12,9 @@ makedepends=("${MINGW_PACKAGE_PREFIX}-autotools"
              "${MINGW_PACKAGE_PREFIX}-cc")
 depends=("${MINGW_PACKAGE_PREFIX}-cfitsio")
 source=("https://sourceforge.net/projects/healpix/files/Healpix_3.30/${_realname}-${pkgver}.tar.gz"
-        "https://sourceforge.net/p/healpix/code/HEAD/tree/trunk/COPYING?format=raw")
-sha256sums=('dbc5ba0d84d6e5f69bdffe6eb572c206e8fefd5bb187d52bbf9b2763b636dbd7'
-            'dbc5ba0d84d6e5f69bdffe6eb572c206e8fefd5bb187d52bbf9b2763b636dbd7')
+        "COPYING::https://sourceforge.net/p/healpix/code/HEAD/tree/trunk/COPYING?format=raw")
+sha256sums=("dbc5ba0d84d6e5f69bdffe6eb572c206e8fefd5bb187d52bbf9b2763b636dbd7"
+            "e6d6a009505e345fe949e1310334fcb0747f28dae2856759de102ab66b722cb4")
 
 prepare() {
   cd "${srcdir}/${_realname}-${pkgver}"
