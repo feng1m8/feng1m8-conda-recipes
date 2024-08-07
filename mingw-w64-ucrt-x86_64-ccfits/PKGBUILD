@@ -33,7 +33,7 @@ build() {
     --enable-static \
     --enable-shared
 
-  make AM_LDFLAGS="-no-undefined"
+  make LDFLAGS="-no-undefined"
 }
 
 package() {
