@@ -16,6 +16,11 @@ source:
 build:
   number: 0
   skip: True  # [not win]
+  ignore_run_exports:
+    - cfitsio
+    - vc14_runtime
+    - ucrt
+    - vc
 
 requirements:
   build:
