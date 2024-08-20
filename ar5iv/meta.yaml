@@ -1,0 +1,28 @@
+{% set name = "ar5iv" %}
+{% set version = "0.3.0" %}
+{% set sha256 = "7d5cbf940836ecaa25d57fce57a5c771f3cf8ed5f221283eda22ee4aba7426f0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/dginev/{{ name }}-bindings/archive/refs/tags/{{ version }}.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  run:
+    - perl
+
+about:
+  home: https://github.com/dginev/ar5iv-bindings
+  license: CUSTOM
+  summary: Extended LaTeXML bindings for converting the sources of arXiv.org
+
+extra:
+  recipe-maintainers:
+    - feng1m8
