@@ -1,0 +1,32 @@
+{% set name = "imagemagick" %}
+{% set version = "7.1.1-36" %}
+
+package:
+  name: {{ name }}
+  version: {{ version|replace("-", "_") }}
+
+source:
+  - url: https://imagemagick.org/archive/binaries/ImageMagick-{{ version }}-Q16-HDRI-x64-dll.exe
+    sha256: 3e6cef8cb24b2bc77933a982c6427bd59460c215b54a03017d50595780218054
+    fn: ImageMagick.dll
+  - url: https://github.com/dscharrer/innoextract/releases/download/1.9/innoextract-1.9-windows.zip
+    sha256: 6989342c9b026a00a72a38f23b62a8e6a22cc5de69805cf47d68ac2fec993065
+    folder: innoextract
+
+build:
+  number: 0
+  skip: true  # [not win]
+
+requirements:
+  run:
+    - vc
+
+about:
+  home: http://www.imagemagick.org/
+  license: ImageMagick
+  license_file: LICENSE
+  summary: Software suite to create, edit, compose, or convert bitmap images.
+
+extra:
+  recipe-maintainers:
+    - feng1m8

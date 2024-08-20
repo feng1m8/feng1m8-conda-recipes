@@ -1,0 +1,37 @@
+{% set name = "perl-image-magick" %}
+{% set version = "7.1.1" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit-portable.zip
+    sha1: fac226b31461f2392702822052a3a5628917f857
+    folder: strawberry
+  - url: https://cpan.metacpan.org/authors/id/J/JC/JCRISTY/Image-Magick-{{ version }}-28.tar.gz
+    sha256: bc54137346c1d45626e7075015f7d1dae813394af885457499f54878cfc19e0b
+    folder: Image-Magick
+  - url: https://raw.githubusercontent.com/ImageMagick/ImageMagick/main/LICENSE
+    sha256: a556c5292c87c9a6ac795c80669b0c3660f9f729de8c476bf2b10f83ab1b34ec
+
+build:
+  number: 0
+  skip: true  # [not win]
+
+requirements:
+  build:
+    - feng1m8::imagemagick 7.1.1*
+  run:
+    - perl 5.32.*
+    - imagemagick 7.1.1*
+
+about:
+  home: https://metacpan.org/dist/Image-Magick
+  license: ImageMagick
+  license_file: LICENSE
+  summary: ImageMagick PERL Extension
+
+extra:
+  recipe-maintainers:
+    - feng1m8
