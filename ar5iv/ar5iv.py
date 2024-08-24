@@ -13,6 +13,7 @@ def notranslate(f):
     jq('.ltx_page_logo').addClass("notranslate")
     jq('.ltx_cite').addClass("notranslate")
     jq('.ltx_authors').addClass("notranslate")
+    jq('.ltx_note_mark').addClass("notranslate")
 
     Path(f).write_text(str(jq), encoding='utf-8')
 
@@ -39,4 +40,4 @@ if __name__ == '__main__':
 
     for i in sys.argv[1:]:
         if i.endswith('.html'):
-            notranslate(i.strip('--dest='))
+            notranslate(i.removeprefix('--dest='))
