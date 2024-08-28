@@ -1,5 +1,5 @@
 {% set name = "gmake" %}
-{% set version = "4.3" %}
+{% set version = "4.4.1" %}
 
 package:
   name: {{ name }}
@@ -7,8 +7,6 @@ package:
 
 source:
   url: https://www.gnu.org/licenses/gpl-3.0.txt
-  sha256: "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
-  fn: COPYING
 
 build:
   number: 0
@@ -16,14 +14,12 @@ build:
 
 requirements:
   build:
-    - make
-  run:
-    - m2w64-gcc-libs
+    - make {{ version }}
 
 about:
   home: https://www.gnu.org/software/make/
   license: GPL-3.0-or-later
-  license_file: COPYING
+  license_file: gpl-3.0.txt
   summary: >-
     GNU Make is a tool which controls the generation of executables and other non-source files of a program from the program's source files.
   doc_url: https://www.gnu.org/software/make/manual/
