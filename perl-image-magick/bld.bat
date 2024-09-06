@@ -1,25 +1,15 @@
-set PATH=%SRC_DIR%\strawberry\perl\bin;%SRC_DIR%\strawberry\c\bin;%PATH%
+bash -lce "mkdir -p /var/lib/pacman/"
+bash -lce "pacman-key --init"
+bash -lce "pacman-key --populate"
 
-set TERM=
-set PERL_JSON_BACKEND=
-set PERL_YAML_BACKEND=
-set PERL5LIB=
-set PERL5OPT=
-set PERL_MM_OPT=
-set PERL_MB_OPT=
+pacman -Sy
+pacman -S mingw-w64-x86_64-gcc --noconfirm
+pacman -Sdd mingw-w64-x86_64-imagemagick --noconfirm
 
-cd %SRC_DIR%\Image-Magick
+set Path=%BUILD_PREFIX%\Library\mingw64\bin;%Path%
 
-perl Makefile.nt LIBS="-L%BUILD_PREFIX%\Library\lib -lCORE_RL_MagickCore_.lib" CC=g++ INC=-I%BUILD_PREFIX%\Library\include
-gmake
+perl Makefile.PL INC=-I%BUILD_PREFIX%\Library\mingw64\include\ImageMagick-7 LIBS="-L%BUILD_PREFIX%\Library\mingw64\lib -lMagickCore-7.Q16HDRI.dll" CCCDLFLAGS=-DMAGICKCORE_HDRI_ENABLE
 
-mkdir %LIBRARY_PREFIX%\site
-mkdir %LIBRARY_PREFIX%\site\lib
-mkdir %LIBRARY_PREFIX%\site\lib\Image
-mkdir %LIBRARY_PREFIX%\site\lib\auto
-mkdir %LIBRARY_PREFIX%\site\lib\auto\Image
-mkdir %LIBRARY_PREFIX%\site\lib\auto\Image\Magick
-
-copy %SRC_DIR%\Image-Magick\blib\arch\auto\Image\Magick\Magick.xs.dll %LIBRARY_PREFIX%\site\lib\auto\Image\Magick\
-copy %SRC_DIR%\Image-Magick\blib\lib\auto\Image\Magick\autosplit.ix %LIBRARY_PREFIX%\site\lib\auto\Image\Magick\
-copy %SRC_DIR%\Image-Magick\blib\lib\Image\Magick.pm %LIBRARY_PREFIX%\site\lib\Image\
+make
+make test
+make install

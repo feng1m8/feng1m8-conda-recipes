@@ -4,7 +4,6 @@ bash -lce "pacman-key --populate"
 
 pacman -Sy
 pacman -S mingw-w64-x86_64-gcc --noconfirm
-pacman -S mingw-w64-x86_64-make --noconfirm
 pacman -S mingw-w64-x86_64-libxslt --noconfirm
 
 set Path=%BUILD_PREFIX%\Library\mingw64\bin;%Path%
