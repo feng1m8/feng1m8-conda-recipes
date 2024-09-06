@@ -1,10 +1,10 @@
 package:
   name: m2-pacman
-  version: 6.1.0.4
+  version: 6.1.0.6
 
 source:
-  - url: https://repo.msys2.org/msys/x86_64/pacman-6.1.0-4-x86_64.pkg.tar.zst
-    sha256: c7680442a63ed8c6fa2469dc7ccad68b875019ef9cccfb1c9c30ecb4c90145f7
+  - url: https://repo.msys2.org/msys/x86_64/pacman-6.1.0-6-x86_64.pkg.tar.zst
+    sha256: 00982d8a63446f739a1761fdfe6059ed95e2c814ecc01ddb996bbe4686db6316
     folder: binary
 
 build:

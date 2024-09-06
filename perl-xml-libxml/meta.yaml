@@ -1,32 +1,38 @@
 {% set name = "perl-xml-libxml" %}
-{% set version = "2.0206" %}
+{% set version = "2.0209" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit-portable.zip
-  sha1: fac226b31461f2392702822052a3a5628917f857
+  url: https://cpan.metacpan.org/authors/id/S/SH/SHLOMIF/XML-LibXML-{{ version }}.tar.gz
+  sha256: b4a5abbcd689aa2fbbc8b7b45339e961c4984e48108494eb6c282b4748222425
 
 build:
   number: 0
-  script: python %RECIPE_DIR%/build.py
   skip: true  # [not win]
 
 requirements:
   build:
-    - delvewheel
+    - perl 5.32.*
+    - make
+    - feng1m8::m2-pacman
   run:
     - perl 5.32.*
-    - m2w64-libxml2 2.9.9
+
+outputs:
+  - name: {{ name }}
+    files:
+      include:
+        - Library/site
 
 about:
   home: https://metacpan.org/dist/XML-LibXML
   license: Artistic-1.0-Perl OR GPL-1.0-or-later
-  license_file:
-    - licenses/perl/Artistic
-    - licenses/perl/Copying
+  # license_file:
+  #   - licenses/perl/Artistic
+  #   - licenses/perl/Copying
   summary: Interface to Gnome libxml2 xml parsing and DOM library
 
 extra:

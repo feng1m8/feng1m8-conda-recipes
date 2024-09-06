@@ -10,7 +10,7 @@ source:
 
 build:
   number: 0
-  script: python build.py
+  script: python %RECIPE_DIR%/build.py
   skip: True  # [not win]
 
 requirements:

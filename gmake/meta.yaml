@@ -9,7 +9,7 @@ source:
   url: https://www.gnu.org/licenses/gpl-3.0.txt
 
 build:
-  number: 0
+  number: 1
   skip: True  # [not win]
 
 requirements:
