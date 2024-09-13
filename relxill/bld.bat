@@ -27,3 +27,5 @@ ninja install
 xcopy /s /e /y %SRC_DIR%\model\ %LIBRARY_PREFIX%\include\relxill\
 xcopy /s /e /y %SRC_DIR%\cmake-build\src\Relxill.dll %LIBRARY_PREFIX%\bin\
 xcopy /s /e /y %SRC_DIR%\cmake-build\src\Relxill.lib %LIBRARY_PREFIX%\lib\
+
+xcopy /s /e /y %RECIPE_DIR%\xsTypes.h %LIBRARY_PREFIX%\include\relxill\

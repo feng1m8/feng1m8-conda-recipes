@@ -1,0 +1,41 @@
+{% set name = "relxill-python" %}
+{% set version = "2.3.1" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  path: .
+
+build:
+  number: 0
+  skip: True  # [not win]
+  ignore_run_exports:
+    - vc14_runtime
+    - ucrt
+    - vc
+    - pkgconf
+    - python_abi
+
+requirements:
+  build:
+    - clangxx_win-64
+    - vs2022_win-64
+    - pkgconf
+    - meson
+    - cython
+    - python 3.8
+    - feng1m8::relxill
+  run:
+    - relxill
+  run_constrained:
+    - python >=3.7
+
+about:
+  license: MIT
+  summary: Python wrapper for relativistic reflection model relxill
+
+extra:
+  recipe-maintainers:
+    - feng1m8

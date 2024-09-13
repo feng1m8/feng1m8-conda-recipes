@@ -10,7 +10,7 @@ source:
   git_depth: 1
 
 build:
-  number: 0
+  number: 2
   skip: True  # [not win]
   ignore_run_exports:
     - vc14_runtime
