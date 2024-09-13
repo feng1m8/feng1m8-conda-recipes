@@ -1,0 +1,28 @@
+{% set name = "pkg-config-is-pkgconf" %}
+{% set version = "2.3.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+build:
+  number: 0
+  skip: True  # [not win]
+
+requirements:
+  build:
+    - pkgconf {{ version }}
+  run:
+    - pkgconf {{ version }}
+  run_constrained:
+    - pkg-config <0
+
+about:
+  home: https://github.com/pkgconf/pkgconf
+  license: MIT
+  summary: package compiler and linker metadata toolkit
+  dev_url: https://github.com/pkgconf/pkgconf
+
+extra:
+  recipe-maintainers:
+    - feng1m8
