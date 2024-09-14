@@ -11,30 +11,11 @@ project(
 
 cxx = meson.get_compiler('cpp')
 
-add_project_arguments(
-    cxx.get_supported_arguments(
-        '-fPIC',
-        '-flto=auto',
-        '-ffunction-sections',
-        '-fdata-sections',
-    ),
-    language: 'cpp',
-)
-
 add_project_link_arguments(
     cxx.get_supported_link_arguments(
-        '-flto=auto',
-        '-Wl,--gc-sections',
+        '-Wl,-noimplib',
     ),
     language: 'cpp',
-)
-
-relxill = declare_dependency(
-    dependencies: [
-        cxx.find_library('Relxill'),
-        dependency('cfitsio'),
-        dependency('fftw3'),
-    ],
 )
 
 python = import('python').find_installation(pure: false)
@@ -43,7 +24,9 @@ python.extension_module(
     'relxill',
     'relxill.pyx',
     dependencies: [
-        relxill,
+        cxx.find_library('Relxill'),
+        dependency('cfitsio'),
+        dependency('fftw3'),
     ],
     cpp_args: [
         '-DCYTHON_LIMITED_API',
@@ -53,9 +36,6 @@ python.extension_module(
     ],
     cython_args:[
         '--module-name=relxill',
-    ],
-    link_args: [
-        cxx.get_supported_link_arguments('-Wl,-noimplib'),
     ],
     install: true,
     limited_api: '3.7',
