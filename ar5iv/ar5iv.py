@@ -18,7 +18,7 @@ def notranslate(f):
     Path(f).write_text(str(jq), encoding='utf-8')
 
 
-if __name__ == '__main__':
+def main():
     latexml = r'perl %CONDA_PREFIX%\Library\site\bin\latexmlc'
 
     args = [
@@ -41,3 +41,7 @@ if __name__ == '__main__':
     for i in sys.argv[1:]:
         if i.endswith('.html'):
             notranslate(i.removeprefix('--dest='))
+
+
+if __name__ == '__main__':
+    main()

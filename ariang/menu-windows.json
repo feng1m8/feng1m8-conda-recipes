@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://schemas.conda.io/menuinst-1.schema.json",
+    "menu_name": "Miniforge",
+    "menu_items":
+    [{
+        "name": {
+            "target_environment_is_base": "AriaNg",
+            "target_environment_is_not_base": "AriaNg ({{ ENV_NAME }})"
+        },
+        "description": "AriaNg",
+        "activate": true,
+        "command": [
+            "{{ BASE_PYTHONW }}",
+            "{{ BASE_PREFIX }}/cwp.py",
+            "{{ PREFIX }}",
+            "{{ PYTHONW }}",
+            "-m",
+            "AriaNg"
+        ],
+        "terminal": false,
+        "icon": "{{ MENU_DIR }}/AriaNg.ico",
+        "platforms": {
+            "win": {}
+        }
+    }]
+}

@@ -1,0 +1,36 @@
+{% set name = "ariang" %}
+{% set version = "1.3.7" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://github.com/mayswind/AriaNg/releases/download/{{ version }}/AriaNg-{{ version }}-AllInOne.zip
+    sha256: 1be6e2d504b5f6de0f047aacda4b0e54dc1c653a3cb5e9c58d9ded6270cf7dd6
+    folder: AriaNg
+  - url: https://github.com/P3TERX/aria2.conf/archive/refs/heads/master.zip
+    sha256: 95b9a31bf92de9a64b2da87ff8cd80536b568300b14704b00f6514248278ae60
+    fn: aria2.conf-master.zip
+    folder: aria2.conf-master
+
+build:
+  number: 0
+  skip: True  # [not win]
+
+requirements:
+  build:
+    - m2-sed
+  run:
+    - python
+
+about:
+  home: http://ariang.mayswind.net/
+  license: MIT
+  license_file: AriaNg/LICENSE
+  summary: A modern web frontend making aria2 easier to use
+  description: AriaNg is a modern web frontend making aria2 easier to use. AriaNg is written in pure html & javascript, thus it does not need any compilers or runtime environment. You can just put AriaNg in your web server and open it in your browser. AriaNg uses responsive layout, and supports any desktop or mobile devices.
+
+extra:
+  recipe-maintainers:
+    - feng1m8
