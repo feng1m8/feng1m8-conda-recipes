@@ -33,14 +33,10 @@ class Make:
 
         conanfile = ConanFile()
 
-        if shared:
-            f.copy(conanfile, 'CCfits.dll', path / 'bin', library / 'bin')
-            f.copy(conanfile, 'CCfits/*', path / 'include', library / 'include')
-            f.copy(conanfile, 'CCfits.lib', path / 'lib', lib)
+        f.copy(conanfile, 'CCfits.dll', path / 'bin', library / 'bin')
+        f.copy(conanfile, 'CCfits/*', path / 'include', library / 'include')
+        f.copy(conanfile, 'CCfits.lib', path / 'lib', lib)
 
-        elif not (lib / 'CCfits_static.lib').exists():
-            f.copy(conanfile, 'CCfits.lib', path / 'lib', lib)
-            f.rename(conanfile, lib / 'CCfits.lib', lib / 'CCfits_static.lib')
 
     def pkgconfig(self):
         prefix = Path(os.getenv('PREFIX', '.prefix'))
@@ -62,18 +58,6 @@ if __name__ == '__main__':
     make = Make('ccfits/2.6')
 
     make.pkgconfig()
-
-    make.download(
-        settings={
-            'os': 'Windows',
-            'compiler.version': '192',
-        },
-        options={
-            'shared': 'False',
-        },
-    )
-
-    make.install(shared=False)
 
     make.download(
         settings={

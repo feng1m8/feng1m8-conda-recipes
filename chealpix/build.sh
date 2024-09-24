@@ -4,7 +4,7 @@ sed -i 's/-lm//g' configure.ac
 
 autoreconf -ivf
 
-./configure --prefix=$PREFIX
+./configure --prefix=$PREFIX --enable-shared
 
 [[ "$target_platform" == "win-64" ]] && patch_libtool
 
