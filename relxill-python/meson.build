@@ -12,9 +12,7 @@ project(
 cxx = meson.get_compiler('cpp')
 
 add_project_link_arguments(
-    cxx.get_supported_link_arguments(
-        '-Wl,-noimplib',
-    ),
+    cxx.get_supported_link_arguments('-Wl,-noimplib'),
     language: 'cpp',
 )
 
