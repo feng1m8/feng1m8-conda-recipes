@@ -1,9 +1,12 @@
 {% set name = "pkg-config-is-pkgconf" %}
-{% set version = "2.3.0" %}
+{% set version = "1.0.0" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
+
+source:
+  path: .
 
 build:
   number: 0
@@ -11,11 +14,12 @@ build:
 
 requirements:
   build:
-    - pkgconf {{ version }}
+    - vs2022_win-64
+    - symlink-exe-build
   run:
-    - pkgconf {{ version }}
+    - pkgconf
   run_constrained:
-    - pkg-config <0
+    - pkg-config <0.0a0
 
 about:
   home: https://github.com/pkgconf/pkgconf

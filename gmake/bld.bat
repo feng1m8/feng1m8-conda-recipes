@@ -1,2 +1,1 @@
-copy %BUILD_PREFIX%\Library\bin\gnumake.exe %LIBRARY_BIN%\gmake.exe
-if errorlevel 1 exit 1
+cl gmake.c gnumake.cxx -I%BUILD_PREFIX%\Library -std:c++17 -EHsc -O1 -Os -Gy -MD -link -FIXED -out:%LIBRARY_BIN%\gmake.exe
