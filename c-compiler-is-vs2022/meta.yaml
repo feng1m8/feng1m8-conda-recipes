@@ -1,0 +1,28 @@
+{% set name = "c-compiler-is-vs2022" %}
+{% set version = "1.0.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+build:
+  number: 0
+  skip: True  # [not win]
+
+requirements:
+  run:
+    - vs2022_win-64
+  run_constrained:
+    - vs2019_win-64 <0.0a0
+    - vs2017_win-64 <0.0a0
+    - vs2015_win-64 <0.0a0
+
+about:
+  license: MIT
+  license_url: https://github.com/feng1m8/feng1m8-conda-recipes/blob/main/LICENSE
+  summary: A metapackage for pinning vs2022 as C compiler
+  dev_url: https://github.com/feng1m8/feng1m8-conda-recipes
+
+extra:
+  recipe-maintainers:
+    - feng1m8

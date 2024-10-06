@@ -1,0 +1,24 @@
+{% set name = "blas-is-mkl" %}
+{% set version = "1.0.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  run:
+    - libblas * *mkl
+
+about:
+  license: MIT
+  license_url: https://github.com/feng1m8/feng1m8-conda-recipes/blob/main/LICENSE
+  summary: Metapackage for pinning mkl as the BLAS implementation
+  dev_url: https://github.com/feng1m8/feng1m8-conda-recipes
+
+extra:
+  recipe-maintainers:
+    - feng1m8
