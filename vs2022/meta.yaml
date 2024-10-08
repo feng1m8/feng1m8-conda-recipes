@@ -1,5 +1,5 @@
-{% set name = "c-compiler-is-vs2022" %}
-{% set version = "1.0.0" %}
+{% set name = "vs2022" %}
+{% set version = "19.30.0" %}
 
 package:
   name: {{ name }}

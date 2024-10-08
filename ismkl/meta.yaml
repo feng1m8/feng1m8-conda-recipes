@@ -1,4 +1,4 @@
-{% set name = "blas-is-mkl" %}
+{% set name = "ismkl" %}
 {% set version = "1.0.0" %}
 
 package:
