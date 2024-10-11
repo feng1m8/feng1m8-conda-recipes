@@ -1,5 +1,5 @@
 {% set name = "perl-xml-libxml" %}
-{% set version = "2.0209" %}
+{% set version = "2.0210" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://cpan.metacpan.org/authors/id/S/SH/SHLOMIF/XML-LibXML-{{ version }}.tar.gz
-  sha256: b4a5abbcd689aa2fbbc8b7b45339e961c4984e48108494eb6c282b4748222425
+  sha256: a29bf3f00ab9c9ee04218154e0afc8f799bf23674eb99c1a9ed4de1f4059a48d
 
 build:
   number: 0
@@ -15,25 +15,19 @@ build:
 
 requirements:
   build:
-    - perl 5.32.*
     - make
-    - feng1m8::m2-pacman
+  host:
+    - m2w64-gcc
+    - m2w64-libxml2
+    - perl 5.32
   run:
-    - perl 5.32.*
-
-outputs:
-  - name: {{ name }}
-    files:
-      include:
-        - Library/site
+    - perl 5.32
+    - m2w64-libxml2
 
 about:
-  home: https://metacpan.org/dist/XML-LibXML
-  license: Artistic-1.0-Perl OR GPL-1.0-or-later
-  # license_file:
-  #   - licenses/perl/Artistic
-  #   - licenses/perl/Copying
-  summary: Interface to Gnome libxml2 xml parsing and DOM library
+  home: https://bitbucket.org/shlomif/perl-xml-libxml
+  license: Perl
+  summary: 'Interface to Gnome libxml2 xml parsing and DOM library'
 
 extra:
   recipe-maintainers:

@@ -5,10 +5,6 @@ package:
   name: {{ name }}
   version: {{ version }}
 
-source:
-  url: https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit-portable.zip
-  sha1: fac226b31461f2392702822052a3a5628917f857
-
 build:
   number: 0
   script: python %RECIPE_DIR%/build.py
@@ -17,17 +13,16 @@ build:
 requirements:
   build:
     - delvewheel
+  host:
+    - perl 5.32
   run:
-    - perl 5.32.*
-    - libdb =6.2
+    - perl 5.32
+    - libdb 6.2
 
 about:
   home: https://metacpan.org/pod/DB_File
   license: Artistic-1.0-Perl OR GPL-1.0-or-later
-  license_file:
-    - licenses/perl/Artistic
-    - licenses/perl/Copying
-  summary: 'DB_File is a module which allows Perl programs to make use of the facilities provided by Berkeley DB'
+  summary: DB_File is a module which allows Perl programs to make use of the facilities provided by Berkeley DB
   dev_url: https://github.com/pmqs/DB_File
 
 extra:
