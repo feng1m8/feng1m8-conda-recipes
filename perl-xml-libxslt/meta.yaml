@@ -24,8 +24,9 @@ requirements:
     - m2w64-libxml2
     - perl 5.32
   run:
-    - perl-xml-libxml
+    - m2w64-libxml2
     - perl 5.32
+    - perl-xml-libxml
 
 about:
   home: https://metacpan.org/dist/XML-LibXSLT
