@@ -1,7 +1,7 @@
-mkdir %LIBRARY_PREFIX%
-xcopy %SRC_DIR%\binary\ %LIBRARY_PREFIX%\ /s /e /y
+mkdir %LIBRARY_PREFIX%\var\lib\pacman
+
+xcopy /s /e /y %SRC_DIR%\binary\ %LIBRARY_PREFIX%\
 
 del %LIBRARY_PREFIX%\.BUILDINFO
 del %LIBRARY_PREFIX%\.MTREE
 del %LIBRARY_PREFIX%\.PKGINFO
-del %LIBRARY_PREFIX%\.INSTALL

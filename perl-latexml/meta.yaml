@@ -1,0 +1,36 @@
+{% set name = "perl-latexml" %}
+{% set version = "0.8.8" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/B/BR/BRMILLER/LaTeXML-{{ version }}.tar.gz
+  sha256: 7d2bbe2ce252baf86ba3f388cd0dec3aa4838f49d612b9ec7cc4ff88105badcc
+
+build:
+  number: 0
+  skip: true  # [not win]
+
+requirements:
+  build:
+    - make
+  host:
+    - perl >5.26.2.1
+  run:
+    - miktex
+    - perl
+    - perl-image-size
+    - perl-xml-libxml
+    - perl-xml-libxslt
+
+about:
+  home: http://search.cpan.org/dist/Image-Size
+  license: open_source
+  summary: A converter that transforms TeX and LaTeX into XML/HTML/MathML
+  description: LaTeXML is a converter that transforms TeX and LaTeX into XML/HTML/MathML and other formats.
+
+extra:
+  recipe-maintainers:
+    - feng1m8

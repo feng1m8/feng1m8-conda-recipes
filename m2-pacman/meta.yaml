@@ -1,10 +1,10 @@
 package:
   name: m2-pacman
-  version: 6.1.0.6
+  version: 6.1.0.8
 
 source:
-  - url: https://repo.msys2.org/msys/x86_64/pacman-6.1.0-6-x86_64.pkg.tar.zst
-    sha256: 00982d8a63446f739a1761fdfe6059ed95e2c814ecc01ddb996bbe4686db6316
+  - url: https://mirror.msys2.org/msys/x86_64/pacman-6.1.0-8-x86_64.pkg.tar.zst
+    sha256: 5c4c98a5ec6afff1a11aa77d456174c8b0e539679c01a79dd439d3fc43a98df1
     folder: binary
 
 build:
@@ -28,8 +28,9 @@ requirements:
 about:
   home: https://www.archlinux.org/pacman/
   license: GPL-2.0-or-later
-  summary: |
-    A library-based package manager with dependency support (MSYS2 port)
+  license_url: https://spdx.org/licenses/GPL-2.0-or-later.html
+  summary: A library-based package manager with dependency support (MSYS2 port)
+  dev_url: https://github.com/msys2/msys2-pacman
 
 extra:
   recipe-maintainers:

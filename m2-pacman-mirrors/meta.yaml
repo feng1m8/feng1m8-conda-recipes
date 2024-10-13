@@ -18,8 +18,7 @@ requirements:
 about:
   home: https://www.msys2.org/dev/mirrors/
   license: GPL
-  summary: |
-    MSYS2 mirror list for use by pacman
+  summary: MSYS2 mirror list for use by pacman
 
 extra:
   recipe-maintainers:

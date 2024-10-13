@@ -3,7 +3,7 @@
 
 package:
   name: {{ name }}
-  version: "{{ version }}.28"
+  version: {{ version }}
 
 source:
   url: https://cpan.metacpan.org/authors/id/J/JC/JCRISTY/Image-Magick-{{ version }}-28.tar.gz
@@ -15,23 +15,20 @@ build:
 
 requirements:
   build:
-    - perl 5.32.*
     - make
-    - feng1m8::m2-pacman
+    - ucrt64-imagemagick
+  host:
+    - m2w64-gcc
+    - perl 5.32
   run:
-    - perl 5.32.*
-
-outputs:
-  - name: {{ name }}
-    files:
-      include:
-        - Library/site
+    - perl 5.32
+    - ucrt64-imagemagick
 
 about:
   home: https://metacpan.org/dist/Image-Magick
-  license: ImageMagick
-  # license_file: LICENSE
-  summary: ImageMagick PERL Extension
+  license: unknown
+  summary: objected-oriented Perl interface to ImageMagick. Use it to read, manipulate, or write an image or image sequence from within a Perl script.
+  description: This Perl extension allows the reading, manipulation and writing of a large number of image file formats using the ImageMagick library. It was originally developed to be used by CGI scripts for Web pages.
 
 extra:
   recipe-maintainers:
