@@ -28,3 +28,6 @@ for i in (library / 'ucrt64').rglob('*.dll'):
         verbose=2,
         test=[],
     )
+
+txt = Path(library / 'ucrt64' / 'etc' / 'ImageMagick-7' / 'delegates.xml')
+txt.write_text(txt.read_text().replace('gswin32c', 'gswin64c'))
