@@ -19,9 +19,7 @@ requirements:
 
 about:
   license: MIT
-  license_url: https://github.com/feng1m8/feng1m8-conda-recipes/blob/main/LICENSE
   summary: A metapackage for pinning vs2022 as C compiler
-  dev_url: https://github.com/feng1m8/feng1m8-conda-recipes
 
 extra:
   recipe-maintainers:

@@ -15,6 +15,7 @@ build:
 requirements:
   build:
     - vs2022_win-64
+  host:
     - symlink-exe-build
   run:
     - pkgconf

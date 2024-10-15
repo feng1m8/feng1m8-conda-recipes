@@ -1,0 +1,32 @@
+{% set name = "ar5ivist" %}
+{% set version = "0.3.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/dginev/ar5iv-bindings/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 888e9d0283efea150c6eebe28973b9d3f4f5d9731e0d31c6281ae27b198fa4a9
+
+build:
+  number: 0
+  skip: True  # [not win]
+
+requirements:
+  build:
+    - vs2022_win-64
+    - libxml2
+  host:
+    - symlink-exe-build
+  run:
+    - libxml2
+    - perl-latexml
+
+about:
+  home: https://github.com/dginev/ar5iv-bindings
+  summary: Extended LaTeXML bindings for converting the sources of arXiv.org
+
+extra:
+  recipe-maintainers:
+    - feng1m8

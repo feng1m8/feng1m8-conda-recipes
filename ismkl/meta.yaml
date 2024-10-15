@@ -15,9 +15,7 @@ requirements:
 
 about:
   license: MIT
-  license_url: https://github.com/feng1m8/feng1m8-conda-recipes/blob/main/LICENSE
   summary: Metapackage for pinning mkl as the BLAS implementation
-  dev_url: https://github.com/feng1m8/feng1m8-conda-recipes
 
 extra:
   recipe-maintainers:
