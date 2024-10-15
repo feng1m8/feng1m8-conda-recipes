@@ -1,5 +1,5 @@
 {% set name = "vs2022" %}
-{% set version = "19.30.0" %}
+{% set version = "19.30" %}
 
 package:
   name: {{ name }}
@@ -19,7 +19,7 @@ requirements:
 
 about:
   license: MIT
-  summary: A metapackage for pinning vs2022 as C compiler
+  summary: Activation and version verification of MSVC 14.30 (VS 2022 compiler)
 
 extra:
   recipe-maintainers:

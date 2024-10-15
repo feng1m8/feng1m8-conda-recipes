@@ -17,7 +17,7 @@ extern "C"
     char* join_executable_and_args(char *executable, char **args, int argc);
 }
 
-void notranslate(const std::string &file)
+static void notranslate(const std::string &file)
 {
     const std::unique_ptr<xmlDoc, std::function<void(htmlDocPtr)>> doc(htmlReadFile(file.c_str(), "UTF-8", HTML_PARSE_NOERROR), xmlFreeDoc);
 
@@ -74,7 +74,7 @@ void notranslate(const std::string &file)
         throw std::ios_base::failure::failure(file);
 }
 
-std::string to_string(const std::wstring &wstr)
+static std::string to_string(const std::wstring &wstr)
 {
     const wchar_t* wptr = wstr.c_str();
     std::string mbstr(1 + std::wcsrtombs(nullptr, &wptr, 0, &std::mbstate_t()), '\0');

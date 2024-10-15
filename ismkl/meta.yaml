@@ -1,5 +1,5 @@
 {% set name = "ismkl" %}
-{% set version = "1.0.0" %}
+{% set version = "1.0" %}
 
 package:
   name: {{ name }}
@@ -15,7 +15,7 @@ requirements:
 
 about:
   license: MIT
-  summary: Metapackage for pinning mkl as the BLAS implementation
+  summary: pinned mkl installation
 
 extra:
   recipe-maintainers:
