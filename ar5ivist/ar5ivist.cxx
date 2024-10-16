@@ -36,8 +36,6 @@ static void notranslate(const std::string &file)
         "//*[@class='ltx_note_mark']",
         "//*[contains(@class,'ltx_cite')]",
     };
-    constexpr xmlChar attr[] = "class";
-    constexpr xmlChar notranslate[] = " notranslate";
 
     for (auto c : expr)
     {
@@ -47,14 +45,17 @@ static void notranslate(const std::string &file)
 
         for (int i = 0; i < obj->nodesetval->nodeNr; ++i)
         {
+            constexpr xmlChar attr[] = "class";
+            constexpr xmlChar clas[] = " notranslate";
+
             xmlNodePtr node = obj->nodesetval->nodeTab[i];
             auto prop = xmlGetProp(node, attr);
 
             if (prop == NULL)
-                xmlSetProp(node, attr, &notranslate[1]);
+                xmlSetProp(node, attr, &clas[1]);
             else
             {
-                const std::unique_ptr<xmlChar, std::function<void(void *)>> cls(xmlStrcat(prop, notranslate), xmlFree);
+                const std::unique_ptr<xmlChar, std::function<void(void *)>> cls(xmlStrcat(prop, clas), xmlFree);
                 xmlSetProp(node, attr, cls.get());
             }
         }
