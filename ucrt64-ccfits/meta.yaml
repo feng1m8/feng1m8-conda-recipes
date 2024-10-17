@@ -1,4 +1,4 @@
-{% set name = "ccfits" %}
+{% set name = "ucrt64-ccfits" %}
 {% set version = "2.6" %}
 
 package:
@@ -15,10 +15,10 @@ build:
 
 requirements:
   build:
-    - vs2022_win-64
     - autotools_clang_conda
-  host:
     - cfitsio >=3.08
+  host:
+    - gxx_win-64
   run:
     - cfitsio >=3.08
 
