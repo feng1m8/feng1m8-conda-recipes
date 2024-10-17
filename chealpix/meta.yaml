@@ -1,31 +1,21 @@
 {% set name = "chealpix" %}
-{% set version = "3.30" %}
+{% set version = "3.30.0" %}
 
 package:
-  name: "{{ name }}"
-  version: "{{ version }}.0"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  - url: "https://sourceforge.net/projects/healpix/files/Healpix_{{ version }}/{{ name }}-{{ version }}.0.tar.gz"
-    sha256: "dbc5ba0d84d6e5f69bdffe6eb572c206e8fefd5bb187d52bbf9b2763b636dbd7"
-    folder: "{{ name }}"
-  - url: "https://sourceforge.net/p/healpix/code/HEAD/tree/trunk/COPYING?format=raw"
-    sha256: "e6d6a009505e345fe949e1310334fcb0747f28dae2856759de102ab66b722cb4"
-    fn: "COPYING"
+  - url: https://sourceforge.net/projects/healpix/files/Healpix_3.30/{{ name }}-{{ version }}.tar.gz
+    sha256: dbc5ba0d84d6e5f69bdffe6eb572c206e8fefd5bb187d52bbf9b2763b636dbd7
 
 build:
   number: 0
   skip: True  # [not win]
-  ignore_run_exports:
-    - cfitsio
-    - vc14_runtime
-    - ucrt
-    - vc
 
 requirements:
   build:
     - vs2022_win-64
-    - clang_win-64
     - autotools_clang_conda
     - m2-pkg-config
   host:
@@ -34,13 +24,12 @@ requirements:
     - cfitsio
 
 about:
-  home: "https://sourceforge.net/projects/healpix/"
-  doc_url: "http://healpix.sf.net/documentation.php"
-  dev_url: "https://sourceforge.net/projects/healpix/"
-  license: "GPL-2.0-or-later"
-  license_family: "GPL"
-  license_file: "COPYING"
-  summary: "Software for pixelization, hierarchical indexation, synthesis, analysis, and visualization of data on the sphere."
+  home: https://sourceforge.net/projects/healpix/
+  doc_url: http://healpix.sf.net/documentation.php
+  dev_url: https://sourceforge.net/projects/healpix/
+  license: GPL-2.0-or-later
+  license_family: GPL
+  summary: Software for pixelization, hierarchical indexation, synthesis, analysis, and visualization of data on the sphere.
   description: |
     HEALPix is a Hierarchical, Equal Area, and iso-Latitude Pixelation of
     the sphere designed to support efficiently (1) local operations on the

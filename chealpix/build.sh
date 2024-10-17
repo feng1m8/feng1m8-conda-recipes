@@ -1,16 +1,14 @@
-cd chealpix
-
 sed -i 's/-lm//g' configure.ac
+sed -i '1i\AM_LDFLAGS = -no-undefined' Makefile.am
 
 autoreconf -ivf
 
-./configure --prefix=$PREFIX --enable-shared
+./configure --prefix=$PREFIX --enable-static=no
 
 [[ "$target_platform" == "win-64" ]] && patch_libtool
 
-make AM_LDFLAGS="-no-undefined"
+make
 
-LIBRARY_PREFIX=$(echo $LIBRARY_PREFIX | sed 's#\\#\\\\#g')
-sed -i "s#${PREFIX}#${LIBRARY_PREFIX}#g" chealpix.pc
+sed -i "s#${PREFIX}#$(cygpath -w ${PREFIX} | sed 's#\\#\\\\#g')#g" chealpix.pc
 
 make install
