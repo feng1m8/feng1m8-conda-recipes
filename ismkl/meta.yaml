@@ -1,4 +1,4 @@
-{% set name = "noopenblas" %}
+{% set name = "ismkl" %}
 {% set version = "1.0" %}
 
 package:
@@ -10,12 +10,12 @@ build:
   noarch: generic
 
 requirements:
-  run_constrained:
-    - libopenblas <0.0a0
+  run:
+    - libblas * *mkl
 
 about:
   license: MIT
-  summary: prevents libopenblas installation
+  summary: pinned mkl installation
 
 extra:
   recipe-maintainers:
