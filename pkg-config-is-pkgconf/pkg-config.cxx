@@ -12,9 +12,10 @@ extern "C"
 static std::string to_string(const std::wstring &wstr)
 {
     const wchar_t* wptr = wstr.c_str();
-    std::string mbstr(1 + std::wcsrtombs(nullptr, &wptr, 0, &std::mbstate_t()), '\0');
-    std::wcsrtombs(mbstr.data(), &wptr, mbstr.size(), &std::mbstate_t());
-    return mbstr;
+    std::mbstate_t ps{};
+    std::string str(1 + std::wcsrtombs(nullptr, &wptr, 0, &ps), '\0');
+    std::wcsrtombs(str.data(), &wptr, str.size(), &ps);
+    return str;
 }
 
 #pragma comment(linker, "/subsystem:console")
@@ -30,8 +31,8 @@ int wmain(int argc, wchar_t* argv[])
     newargs.reserve(argc + 1);
 
     newargs.emplace_back(newpath.data());
-    for (int i = 1; i < argc; i++)
-        newargs.emplace_back(quoted(to_string(argv[i]).data()));
+    for (int i = 1; i < argc; ++i)
+        newargs.emplace_back(quoted(to_string(argv[i]).c_str()));
     newargs.emplace_back(nullptr);
 
     char *cmdline = join_executable_and_args(newpath.data(), newargs.data(), argc);
