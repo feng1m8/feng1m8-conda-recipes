@@ -29,8 +29,8 @@ requirements:
     - ucrt64-liblqr
     - ucrt64-libraqm
     - libpng
-    - conda-forge/label/m2w64-experimental::mingw-w64-ucrt-x86_64-gcc-libs
-    - skupr/label/new-msys2::ucrt64-libltdl
+    - mingw-w64-ucrt-x86_64-gcc-libs
+    - ucrt64-libltdl
 
 about:
   home: https://www.imagemagick.org/
