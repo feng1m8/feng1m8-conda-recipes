@@ -1,5 +1,5 @@
 {% set name = "ucrt64-imagemagick" %}
-{% set version = "7.1.1.38" %}
+{% set version = "7.1.1.39" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://mirror.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-imagemagick-{{ version }}-1-any.pkg.tar.zst
-  sha256: 08e3b459c2cfe0a2f8aa4fd6883f52ca1d701421b11531c07b4a2d2a448b8d47
+  sha256: 9062a489bb3b53b5b69478a339341ce12204dabc1c2611fa9978c5c4c0af9522
 
 build:
   number: 0
@@ -31,6 +31,8 @@ requirements:
     - libpng
     - mingw-w64-ucrt-x86_64-gcc-libs
     - ucrt64-libltdl
+  run_constrained:
+    - msys2-mingw-w64-mutex * ucrt64
 
 about:
   home: https://www.imagemagick.org/
