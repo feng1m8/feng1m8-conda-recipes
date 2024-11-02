@@ -23,14 +23,14 @@ requirements:
     - fontconfig
     - freetype
     - lcms2
+    - ucrt64-liblqr
+    - ucrt64-libltdl
+    - libpng
+    - ucrt64-libraqm
     - mingw-w64-ucrt-x86_64-libwinpthread-git
     - libxml2
     - zlib
-    - ucrt64-liblqr
-    - ucrt64-libraqm
-    - libpng
     - mingw-w64-ucrt-x86_64-gcc-libs
-    - ucrt64-libltdl
   run_constrained:
     - msys2-mingw-w64-mutex * ucrt64
 
