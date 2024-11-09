@@ -16,11 +16,9 @@ build:
 requirements:
   build:
     - vs2022_win-64
-    - libxml2
   host:
     - symlink-exe-build
   run:
-    - libxml2
     - perl-latexml
 
 about:
