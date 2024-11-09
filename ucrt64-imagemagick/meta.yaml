@@ -29,7 +29,7 @@ requirements:
     - ucrt64-libraqm
     - mingw-w64-ucrt-x86_64-libwinpthread-git
     - libxml2
-    - zlib
+    - libzlib
     - mingw-w64-ucrt-x86_64-gcc-libs
   run_constrained:
     - msys2-mingw-w64-mutex * ucrt64
@@ -37,6 +37,7 @@ requirements:
 about:
   home: https://www.imagemagick.org/
   license: ImageMagick
+  license_file: ucrt64/share/licenses/imagemagick/LICENSE
   license_url: https://spdx.org/licenses/ImageMagick.html
   summary: An image viewing/manipulation program (mingw-w64)
   dev_url: https://github.com/ImageMagick/ImageMagick
