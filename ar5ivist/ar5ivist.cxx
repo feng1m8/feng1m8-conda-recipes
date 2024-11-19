@@ -1,6 +1,7 @@
 #include <filesystem>
 
-#include <windows.h>
+#include <shlwapi.h>
+#pragma comment(lib, "shlwapi.lib") 
 
 extern "C"
 {
@@ -12,8 +13,8 @@ extern "C"
 static std::string to_string(const std::wstring &wstr)
 {
     const wchar_t* wptr = wstr.c_str();
-    std::mbstate_t ps{};
-    std::string str(1 + std::wcsrtombs(nullptr, &wptr, 0, &ps), '\0');
+    std::mbstate_t ps;
+    std::string str(std::wcsrtombs(nullptr, &wptr, 0, &ps), '\0');
     std::wcsrtombs(str.data(), &wptr, str.size(), &ps);
     return str;
 }
@@ -22,11 +23,13 @@ static std::string to_string(const std::wstring &wstr)
 #pragma comment(linker, "/entry:wmainCRTStartup")
 int wmain(int argc, wchar_t* argv[])
 {
-    char path[MAX_PATH];
-    GetModuleFileNameA(NULL, path, MAX_PATH);
+    std::string newpath("perl.exe");
+    newpath.resize(MAX_PATH, '\0');
 
-    const std::filesystem::path prefix(std::filesystem::path(path).parent_path().parent_path());
-    std::string newpath((prefix / "bin" / "perl.exe").string());
+    if (FALSE == PathFindOnPathA(newpath.data(), NULL))
+        throw std::filesystem::filesystem_error(newpath, std::make_error_code(std::errc::no_such_file_or_directory));
+
+    const std::filesystem::path prefix(std::filesystem::path(newpath).parent_path().parent_path());
 
     std::vector<char *> newargs{
         newpath.data(),
@@ -46,6 +49,7 @@ int wmain(int argc, wchar_t* argv[])
         quoted("--css=https://cdn.jsdelivr.net/gh/dginev/ar5iv-css@0.7.9/css/ar5iv-fonts.min.css"),
     };
 
+    newargs.reserve(argc + newargs.size());
     for (int i = 1; i < argc; ++i)
         newargs.emplace_back(quoted(to_string(argv[i]).c_str()));
     newargs.emplace_back(nullptr);
