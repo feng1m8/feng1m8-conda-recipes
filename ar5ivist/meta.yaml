@@ -15,10 +15,13 @@ build:
 
 requirements:
   build:
-    - vs2022_win-64
+    - clang_win-64
+    - clangxx_win-64
   host:
-    - symlink-exe-build
+    - vs2022_win-64
+    - perl 5.32
   run:
+    - perl 5.32
     - perl-latexml
 
 about:
