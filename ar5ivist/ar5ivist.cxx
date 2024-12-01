@@ -12,19 +12,19 @@ class Perl
 {
     PerlInterpreter *my_perl;
 
-    public:
+public:
     Perl(int argc, char *argv[], char *envp[])
     {
         PERL_SYS_INIT3(&argc, &argv, &envp);
-        my_perl = perl_alloc();
-        perl_construct( my_perl );
+        this->my_perl = perl_alloc();
+        perl_construct( this->my_perl );
         PL_exit_flags |= PERL_EXIT_DESTRUCT_END;
     }
 
     ~Perl()
     {
-        perl_destruct(my_perl);
-        perl_free(my_perl);
+        perl_destruct(this->my_perl);
+        perl_free(this->my_perl);
         PERL_SYS_TERM();
     }
 
