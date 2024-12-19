@@ -25,7 +25,3 @@ about:
   license: LGPL-2.1-or-later OR GPL-2.1-or-later
   summary: A seam-carving C/C++ library called Liquid Rescale (mingw-w64)
   dev_url: https://github.com/carlobaldassi/liblqr/
-
-extra:
-  recipe-maintainers:
-    - feng1m8

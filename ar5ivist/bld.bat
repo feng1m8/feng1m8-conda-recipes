@@ -5,7 +5,6 @@ xcopy /s /e /y %SRC_DIR%\supported_originals\ %LIBRARY_PREFIX%\opt\ar5iv-binding
 
 perl -MExtUtils::Embed -e xsinit -- -o perlxsi.c
 
-clang -c perlxsi.c -DWIN32 -DWIN64 -D__USE_MINGW_ANSI_STDIO -DPERL_TEXTMODE_SCRIPTS -DPERL_IMPLICIT_CONTEXT -DPERL_IMPLICIT_SYS -DUSE_PERLIO -fwrapv -fno-strict-aliasing -mms-bitfields -I%LIBRARY_PREFIX%\lib\CORE
-clang++ -c %RECIPE_DIR%\ar5ivist.cxx -std=c++17 -DWIN32 -DWIN64 -D__USE_MINGW_ANSI_STDIO -DPERL_TEXTMODE_SCRIPTS -DPERL_IMPLICIT_CONTEXT -DPERL_IMPLICIT_SYS -DUSE_PERLIO -fwrapv -fno-strict-aliasing -mms-bitfields -I%LIBRARY_PREFIX%\lib\CORE
-
-clang++ -o %LIBRARY_BIN%\ar5ivist.exe perlxsi.o ar5ivist.o -s -L%LIBRARY_PREFIX%\lib\CORE %LIBRARY_PREFIX%\lib\CORE\libperl532.a
+powershell "clang -c perlxsi.c ((perl -MExtUtils::Embed -e ccopts) -split ' ')"
+powershell "clang++ -c %RECIPE_DIR%\ar5ivist.cxx -std=c++17 ((perl -MExtUtils::Embed -e ccopts) -split ' ')"
+powershell "clang++ -o %LIBRARY_BIN%\ar5ivist.exe perlxsi.o ar5ivist.o ((perl -MExtUtils::Embed -e ldopts) -split ' ')"

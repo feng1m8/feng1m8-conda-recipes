@@ -41,7 +41,3 @@ about:
   license_url: https://spdx.org/licenses/ImageMagick.html
   summary: An image viewing/manipulation program (mingw-w64)
   dev_url: https://github.com/ImageMagick/ImageMagick
-
-extra:
-  recipe-maintainers:
-    - feng1m8

@@ -1,0 +1,22 @@
+{% set name = "xspec-devel" %}
+{% set version = "12.14.1" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://heasarc.gsfc.nasa.gov/FTP/software/lheasoft/lheasoft6.34/heasoft-6.34src_no_xspec_modeldata.tar.gz
+  sha256: 86d164042e0803abc330f65dbc1a0e243aaa0f3a68ad231f5b994706ae98c6b6
+
+build:
+  number: 0
+  skip: True  # [not win]
+
+requirements:
+  build:
+    - autotools_clang_conda
+  host:
+    - gcc_win-64
+    - gxx_win-64
+    - gfortran_win-64

@@ -29,7 +29,3 @@ about:
   license: unknown
   summary: objected-oriented Perl interface to ImageMagick. Use it to read, manipulate, or write an image or image sequence from within a Perl script.
   description: This Perl extension allows the reading, manipulation and writing of a large number of image file formats using the ImageMagick library. It was originally developed to be used by CGI scripts for Web pages.
-
-extra:
-  recipe-maintainers:
-    - feng1m8

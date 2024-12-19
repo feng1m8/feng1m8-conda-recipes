@@ -27,7 +27,3 @@ requirements:
 about:
   home: https://github.com/dginev/ar5iv-bindings
   summary: Extended LaTeXML bindings for converting the sources of arXiv.org
-
-extra:
-  recipe-maintainers:
-    - feng1m8

@@ -30,7 +30,3 @@ about:
   license: open_source
   summary: A converter that transforms TeX and LaTeX into XML/HTML/MathML
   description: LaTeXML is a converter that transforms TeX and LaTeX into XML/HTML/MathML and other formats.
-
-extra:
-  recipe-maintainers:
-    - feng1m8

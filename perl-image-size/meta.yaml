@@ -25,7 +25,3 @@ about:
   home: http://search.cpan.org/dist/Image-Size
   license: perl_5
   summary: A library to extract height/width from images
-
-extra:
-  recipe-maintainers:
-    - feng1m8

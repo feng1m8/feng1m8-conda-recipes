@@ -20,7 +20,3 @@ requirements:
 about:
   license: MIT
   summary: Activation and version verification of MSVC 14.30 (VS 2022 compiler)
-
-extra:
-  recipe-maintainers:
-    - feng1m8

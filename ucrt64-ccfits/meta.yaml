@@ -28,7 +28,3 @@ about:
   license: CUSTOM
   license_file: License.txt
   doc_url: https://heasarc.gsfc.nasa.gov/fitsio/ccfits/html/index.html
-
-extra:
-  recipe-maintainers:
-    - feng1m8

@@ -28,7 +28,3 @@ about:
   license_file: ucrt64/share/licenses/libraqm/LICENSE
   license_url: https://spdx.org/licenses/MIT.html
   summary: A library that encapsulates the logic for complex text layout (mingw-w64)
-
-extra:
-  recipe-maintainers:
-    - feng1m8

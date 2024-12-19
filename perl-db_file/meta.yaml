@@ -24,7 +24,3 @@ about:
   license: Artistic-1.0-Perl OR GPL-1.0-or-later
   summary: DB_File is a module which allows Perl programs to make use of the facilities provided by Berkeley DB
   dev_url: https://github.com/pmqs/DB_File
-
-extra:
-  recipe-maintainers:
-    - feng1m8
