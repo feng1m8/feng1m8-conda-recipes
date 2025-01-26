@@ -23,6 +23,6 @@ sed -i 's/libCCfits_la_LDFLAGS = -R $(R_LIB_PATH) -R $(CXX_LIB_PATH)/libCCfits_l
 
 make
 
-sed -i "s#${PREFIX}#$(cygpath -w ${PREFIX} | sed 's#\\#\\\\#g')#g" CCfits.pc
+sed -i "s|$PREFIX|$(cygpath -w $PREFIX)|g" CCfits.pc
 
 make install

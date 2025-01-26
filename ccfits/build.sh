@@ -12,7 +12,7 @@ sed -i 's/cookbook_LDFLAGS = -R $(R_LIB_PATH) -R $(CXX_LIB_PATH)/cookbook_LDFLAG
 
 make
 
-sed -i "s#${PREFIX}#$(cygpath -w ${PREFIX} | sed 's#\\#\\\\#g')#g" CCfits.pc
+sed -i "s|$PREFIX|$(cygpath -w $PREFIX)|g" CCfits.pc
 
 make install
 

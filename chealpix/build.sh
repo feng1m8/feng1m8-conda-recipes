@@ -9,6 +9,6 @@ autoreconf -ivf
 
 make
 
-sed -i "s#${PREFIX}#$(cygpath -w ${PREFIX} | sed 's#\\#\\\\#g')#g" chealpix.pc
+sed -i "s|$PREFIX|$(cygpath -m $PREFIX)|g" chealpix.pc
 
 make install
