@@ -31,7 +31,7 @@ public:
     std::string eval(const char *p) const
     {
         const char *embedding[] = {"", "-e", "0", NULL};
-        perl_parse(this->my_perl, xs_init, 3, const_cast<char**>(embedding), NULL);
+        perl_parse(this->my_perl, xs_init, 3, const_cast<char **>(embedding), NULL);
         return SvPV_nolen(eval_pv(p, TRUE));
     }
 
@@ -40,7 +40,7 @@ public:
         std::vector<char *> newargs;
         newargs.reserve(argv.size() + 1);
 
-        for (auto &i: argv)
+        for (auto &i : argv)
             newargs.emplace_back(i.data());
         newargs.emplace_back(nullptr);
 
@@ -81,6 +81,34 @@ int main(int argc, char *argv[], char *envp[])
     newargv.reserve(argc + newargv.size() - 1);
     for (int i = 1; i < argc; ++i)
         newargv.emplace_back(argv[i]);
+
+    for (std::size_t i = newargv.size() - 2; i >= 0; --i)
+    {
+        if (newargv[i].starts_with("--des") or newargv[i].starts_with("-des") or newargv[i].starts_with("--ou") or newargv[i].starts_with("-ou"))
+        {
+            const std::filesystem::path tmp(std::tmpnam(nullptr));
+            std::filesystem::path destination(newargv[i + 1]);
+
+            if (newargv[i].find('=') == std::string::npos)
+                newargv[i + 1] = (tmp / destination.filename()).string();
+
+            else
+            {
+                destination = newargv[i].substr(newargv[i].find('=') + 1);
+                newargv[i] = "--destination=" + (tmp / destination.filename()).string();
+            }
+
+            perl.run(newargv);
+
+            std::filesystem::create_directories(destination.parent_path());
+            for (auto &j : std::filesystem::directory_iterator(tmp))
+                std::filesystem::rename(j.path(), destination.parent_path() / j.path().filename());
+
+            std::filesystem::remove_all(tmp);
+
+            return 0;
+        }
+    }
 
     perl.run(newargv);
 
