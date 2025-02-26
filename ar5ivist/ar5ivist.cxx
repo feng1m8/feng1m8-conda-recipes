@@ -1,19 +1,18 @@
 #include <filesystem>
-#include <windows.h>
 
-#define selectany
 #include <EXTERN.h>
+#define selectany
 #include <perl.h>
 #undef selectany
 
 EXTERN_C void xs_init(pTHX);
 
-class MyPerl
+class Perl
 {
     PerlInterpreter *my_perl;
 
 public:
-    MyPerl(int argc, char *argv[], char *envp[])
+    Perl(int argc, char *argv[], char *envp[])
     {
         PERL_SYS_INIT3(&argc, &argv, &envp);
         this->my_perl = perl_alloc();
@@ -21,52 +20,69 @@ public:
         PL_exit_flags |= PERL_EXIT_DESTRUCT_END;
     }
 
-    ~MyPerl()
+    ~Perl()
     {
         perl_destruct(this->my_perl);
         perl_free(this->my_perl);
         PERL_SYS_TERM();
     }
 
-    std::string eval(const char *p) const
+    void run(std::vector<std::string> &args) const
     {
-        const char *embedding[] = {"", "-e", "0", NULL};
-        perl_parse(this->my_perl, xs_init, 3, const_cast<char **>(embedding), NULL);
-        return SvPV_nolen(eval_pv(p, TRUE));
-    }
+        std::vector<char *> argv;
+        for (auto &i : args)
+            argv.emplace_back(i.data());
 
-    void run(std::vector<std::string> &argv) const
-    {
-        std::vector<char *> newargs;
-        newargs.reserve(argv.size() + 1);
+        argv.emplace_back(nullptr);
 
-        for (auto &i : argv)
-            newargs.emplace_back(i.data());
-        newargs.emplace_back(nullptr);
-
-        perl_parse(this->my_perl, xs_init, newargs.size() - 1, newargs.data(), NULL);
+        perl_parse(this->my_perl, xs_init, argv.size() - 1, argv.data(), NULL);
         perl_run(this->my_perl);
     }
 };
 
+std::filesystem::path program_path()
+{
+    std::wstring filename(MAX_PATH, L'\0');
+
+    for (auto size = filename.size(); size >= filename.size();)
+    {
+        filename.resize(2 * filename.size());
+        size = GetModuleFileNameW(NULL, filename.data(), filename.size());
+    }
+
+    return std::filesystem::path(filename).parent_path();
+}
+
+void add_environment_path(std::vector<std::filesystem::path> paths)
+{
+    std::wstring path{};
+    for (auto &i : paths)
+        path += i.wstring() + L";";
+
+    std::wstring value(GetEnvironmentVariableW(L"PATH", nullptr, 0), L'\0');
+    GetEnvironmentVariableW(L"PATH", value.data(), value.size());
+    SetEnvironmentVariableW(L"PATH", (path + value).c_str());
+}
+
 int main(int argc, char *argv[], char *envp[])
 {
-    char newpath[MAX_PATH];
-    GetModuleFileNameA(NULL, newpath, MAX_PATH);
+    const Perl perl(argc, argv, envp);
 
-    const std::filesystem::path opt(std::filesystem::path(newpath).parent_path().replace_filename("opt"));
+    const std::filesystem::path prefix(program_path().parent_path());
 
-    const MyPerl perl(argc, argv, envp);
+    add_environment_path({
+        prefix / "ucrt64" / "bin",
+        prefix / "mingw-w64" / "bin",
+        prefix / "bin",
+    });
 
-    const std::filesystem::path site(std::filesystem::path(perl.eval("use LaTeXML; $INC{'LaTeXML.pm'}")).parent_path().parent_path());
-
-    std::vector<std::string> newargv{
+    std::vector<std::string> args{
         "perl.exe",
-        (site / "bin" / "latexmlc").string(),
+        (prefix / "site" / "bin" / "latexmlc").string(),
         "--preload=[nobibtex,ids,localrawstyles,nobreakuntex,magnify=1.8,zoomout=1.8,tokenlimit=249999999,iflimit=3599999,absorblimit=1299999,pushbacklimit=599999]latexml.sty",
         "--preload=ar5iv.sty",
-        "--path=" + (opt / "ar5iv-bindings" / "bindings").string(),
-        "--path=" + (opt / "ar5iv-bindings" / "supported_originals").string(),
+        "--path=" + (prefix / "opt" / "ar5iv-bindings" / "bindings").string(),
+        "--path=" + (prefix / "opt" / "ar5iv-bindings" / "supported_originals").string(),
         "--format=html5",
         "--pmml",
         "--cmml",
@@ -78,39 +94,38 @@ int main(int argc, char *argv[], char *envp[])
         "--css=https://cdn.jsdelivr.net/gh/dginev/ar5iv-css@0.7.9/css/ar5iv-fonts.min.css",
     };
 
-    newargv.reserve(argc + newargv.size() - 1);
     for (int i = 1; i < argc; ++i)
-        newargv.emplace_back(argv[i]);
+        args.emplace_back(argv[i]);
 
-    for (std::size_t i = newargv.size() - 2; i >= 0; --i)
+    for (std::size_t i = args.size() - 1; i > 0; --i)
     {
-        if (newargv[i].starts_with("--des") or newargv[i].starts_with("-des") or newargv[i].starts_with("--ou") or newargv[i].starts_with("-ou"))
+        if (args[i].starts_with("--des") or args[i].starts_with("-des") or args[i].starts_with("--ou") or args[i].starts_with("-ou"))
         {
-            const std::filesystem::path tmp(std::tmpnam(nullptr));
-            std::filesystem::path destination(newargv[i + 1]);
+            const std::filesystem::path temp(std::tmpnam(nullptr));
 
-            if (newargv[i].find('=') == std::string::npos)
-                newargv[i + 1] = (tmp / destination.filename()).string();
-
+            std::filesystem::path destination;
+            if (args[i].find('=') == std::string::npos)
+            {
+                destination = args[i + 1];
+                args[i + 1] = (temp / destination.filename()).string();
+            }
             else
             {
-                destination = newargv[i].substr(newargv[i].find('=') + 1);
-                newargv[i] = "--destination=" + (tmp / destination.filename()).string();
+                destination = args[i].substr(args[i].find('=') + 1);
+                args[i] = "--destination=" + (temp / destination.filename()).string();
             }
 
-            perl.run(newargv);
+            perl.run(args);
 
             std::filesystem::create_directories(destination.parent_path());
-            for (auto &j : std::filesystem::directory_iterator(tmp))
+            for (auto &j : std::filesystem::directory_iterator(temp))
                 std::filesystem::rename(j.path(), destination.parent_path() / j.path().filename());
-
-            std::filesystem::remove_all(tmp);
 
             return 0;
         }
     }
 
-    perl.run(newargv);
+    perl.run(args);
 
     return 0;
 }
