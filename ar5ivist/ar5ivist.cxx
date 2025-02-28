@@ -53,7 +53,7 @@ std::filesystem::path program_path()
     return std::filesystem::path(filename).parent_path();
 }
 
-void add_environment_path(std::vector<std::filesystem::path> paths)
+void add_environment_path(const std::vector<std::filesystem::path> &paths)
 {
     std::wstring path{};
     for (auto &i : paths)
