@@ -8,6 +8,8 @@ package:
 source:
   - url: https://sourceforge.net/projects/healpix/files/Healpix_3.30/{{ name }}-{{ version }}.tar.gz
     sha256: dbc5ba0d84d6e5f69bdffe6eb572c206e8fefd5bb187d52bbf9b2763b636dbd7
+    patches:
+      - Fix_link_on_windows.patch  # [win]
 
 build:
   number: 0
@@ -15,7 +17,7 @@ build:
 
 requirements:
   build:
-    - vs2022_win-64
+    - vs_win-64
     - autotools_clang_conda
     - m2-pkg-config
   host:
@@ -29,6 +31,8 @@ about:
   dev_url: https://sourceforge.net/projects/healpix/
   license: GPL-2.0-or-later
   license_family: GPL
+  license_file:
+    - {{ BUILD_PREFIX }}/Library/usr/share/automake-1.9/COPYING
   summary: Software for pixelization, hierarchical indexation, synthesis, analysis, and visualization of data on the sphere.
   description: |
     HEALPix is a Hierarchical, Equal Area, and iso-Latitude Pixelation of
