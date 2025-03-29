@@ -1,30 +1,33 @@
 {% set name = "ccfits" %}
-{% set version = "2.6" %}
+{% set version = "2.7" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://heasarc.gsfc.nasa.gov/fitsio/CCfits/CCfits-{{ version }}.tar.gz
-  sha256: c8395e80379df4e2a63b0890166fb47be4b96dff977214e7ed10ea9d3e9e9a9e
+  url: https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/{{ name }}/CCfits-{{ version }}.tar.gz
+  sha256: f63546d2feecbf732cc08aaaa80a2eb5334ada37fb2530181b7363a5dbdeb01a
 
 build:
   number: 0
   skip: True  # [not win]
+  ignore_run_exports:
+    - vc14_runtime  # [win]
+    - ucrt  # [win]
 
 requirements:
   build:
-    - vs2022_win-64
+    - vs_win-64
     - autotools_clang_conda
   host:
-    - cfitsio >=3.08
+    - cfitsio
   run:
-    - cfitsio >=3.08
+    - cfitsio
 
 about:
   summary: CCfits is an object oriented interface to the cfitsio library. It is designed to make the capabilities of cfitsio available to programmers working in C++. It is written in ANSI C++ and implemented using the C++ Standard Library with namespaces, exception handling, and member template functions.
   home: https://heasarc.gsfc.nasa.gov/fitsio/ccfits/
-  license: CUSTOM
+  license: CFITSIO
   license_file: License.txt
   doc_url: https://heasarc.gsfc.nasa.gov/fitsio/ccfits/html/index.html
