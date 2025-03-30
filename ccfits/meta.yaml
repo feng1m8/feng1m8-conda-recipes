@@ -14,7 +14,6 @@ build:
   skip: True  # [not win]
   ignore_run_exports:
     - ucrt  # [win]
-    - vc  # [win]
     - vc14_runtime  # [win]
 
 requirements:
