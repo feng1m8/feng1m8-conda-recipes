@@ -71,14 +71,14 @@ int main(int argc, char *argv[], char *envp[])
     const std::filesystem::path prefix(program_path().parent_path());
 
     add_environment_path({
-        prefix / "Library" / "ucrt64" / "bin",
-        prefix / "Library" / "mingw-w64" / "bin",
-        prefix / "Library" / "bin",
+        prefix / "ucrt64" / "bin",
+        prefix / "mingw-w64" / "bin",
+        prefix / "bin",
     });
 
     std::vector<std::string> args{
         "perl.exe",
-        (prefix / "bin" / "latexmlc").string(),
+        (prefix.parent_path() / "bin" / "latexmlc").string(),
         "--preload=[nobibtex,ids,localrawstyles,nobreakuntex,magnify=1.8,zoomout=1.8,tokenlimit=249999999,iflimit=3599999,absorblimit=1299999,pushbacklimit=599999]latexml.sty",
         "--preload=ar5iv.sty",
         "--path=" + (prefix / "opt" / "ar5iv-bindings" / "bindings").string(),
