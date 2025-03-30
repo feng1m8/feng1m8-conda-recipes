@@ -1,0 +1,31 @@
+diff -u Xspec/BUILD_DIR/hd_install.c Xspec/BUILD_DIR/hd_install.c
+--- Xspec/BUILD_DIR/hd_install.c
++++ Xspec/BUILD_DIR/hd_install.c
+@@ -90,7 +90,7 @@
+   ERR_IF_SRC_MISSING = BIT(5),
+   VERBOSE = BIT(6),
+   FORCE_INSTALL = BIT(7),
+-  DEFAULT = WARN_IF_SRC_MISSING | VERBOSE
++  DEFAULT = WARN_IF_SRC_MISSING | VERBOSE | ABSOLUTE_PATH
+ } InstallOptions;
+ 
+ enum hd_file_types_e {
+@@ -780,7 +780,7 @@
+     *outpath = NULL;
+ 
+     /* Make sure it's not already absolute. */
+-    if('/' != *inpath) {
++    if(('/' != *inpath) && (!strstr(inpath, ":"))) {
+       char pwd[MAX_PATH_LEN];
+ 
+       /* Prepend current directory to the path. */
+@@ -1369,9 +1369,7 @@
+ 
+     /* Copy the whole command into one buffer. */
+     for (tmp = argv; ; ++tmp) {
+-      strcat(full_cmd, "'");
+       strcat(full_cmd, *tmp);
+-      strcat(full_cmd, "'");
+       if (NULL == *(tmp + 1)) break;
+       strcat(full_cmd, " ");
+     }

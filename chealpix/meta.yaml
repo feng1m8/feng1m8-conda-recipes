@@ -6,10 +6,10 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://sourceforge.net/projects/healpix/files/Healpix_3.30/{{ name }}-{{ version }}.tar.gz
-    sha256: dbc5ba0d84d6e5f69bdffe6eb572c206e8fefd5bb187d52bbf9b2763b636dbd7
-    patches:
-      - Fix_link_on_windows.patch  # [win]
+  url: https://sourceforge.net/projects/healpix/files/Healpix_3.30/{{ name }}-{{ version }}.tar.gz
+  sha256: dbc5ba0d84d6e5f69bdffe6eb572c206e8fefd5bb187d52bbf9b2763b636dbd7
+  patches:
+    - Fix_link_on_windows.patch  # [win]
 
 build:
   number: 0

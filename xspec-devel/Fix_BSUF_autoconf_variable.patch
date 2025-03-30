@@ -1,0 +1,13 @@
+diff -u Xspec/BUILD_DIR/configure.in Xspec/BUILD_DIR/configure.in
+--- Xspec/BUILD_DIR/configure.in
++++ Xspec/BUILD_DIR/configure.in
+@@ -1829,6 +1829,9 @@
+   SunOS*)
+     EXT=sol
+     ;;
++  MINGW*)
++    BSUF=.exe
++    ;;
+ esac
+ 
+ #-------------------------------------------------------------------------------
