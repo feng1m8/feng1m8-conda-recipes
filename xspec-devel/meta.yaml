@@ -19,7 +19,7 @@ build:
     - ucrt  # [win]
     - libgcc  # [win]
     - libstdcxx  # [win]
-    - libgfortran5  # [win]
+    - libgfortran  # [win]
 
 requirements:
   build:
