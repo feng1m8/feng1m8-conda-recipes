@@ -18,12 +18,14 @@ requirements:
     - clang_win-64
     - clangxx_win-64
   host:
-    - vs2022_win-64
     - perl 5.32
   run:
     - perl 5.32
     - perl-latexml
+    - miktex
 
 about:
   home: https://github.com/dginev/ar5iv-bindings
   summary: Extended LaTeXML bindings for converting the sources of arXiv.org
+  license: MIT
+  license_file: bindings/LICENSE
