@@ -20,6 +20,7 @@ build:
     - libgcc  # [win]
     - libstdcxx  # [win]
     - libgfortran  # [win]
+    - libgfortran5  # [win]
 
 requirements:
   build:
