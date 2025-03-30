@@ -7,4 +7,6 @@ perl -MExtUtils::Embed -e xsinit -- -o perlxsi.c
 
 powershell "clang -c perlxsi.c ((perl -MExtUtils::Embed -e ccopts) -split ' ')"
 powershell "clang++ -c %RECIPE_DIR%\ar5ivist.cxx -std=c++23 ((perl -MExtUtils::Embed -e ccopts) -split ' ')"
+
+mkdir %PREFIX%\Scripts
 powershell "clang++ -o %PREFIX%\Scripts\ar5ivist.exe perlxsi.o ar5ivist.o ((perl -MExtUtils::Embed -e ldopts) -split ' ')"

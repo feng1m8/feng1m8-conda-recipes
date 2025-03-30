@@ -12,6 +12,9 @@ source:
 build:
   number: 0
   skip: True  # [not win]
+  ignore_run_exports:
+    - vc  # [win]
+    - ucrt  # [win]
 
 requirements:
   build:
