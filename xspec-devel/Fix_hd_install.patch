@@ -29,3 +29,18 @@ diff -u Xspec/BUILD_DIR/hd_install.c Xspec/BUILD_DIR/hd_install.c
        if (NULL == *(tmp + 1)) break;
        strcat(full_cmd, " ");
      }
+@@ -1491,12 +1489,12 @@
+           case 'h':
+             printf("%s: %s\n", sBanner, usage);
+             printf("%s: Arguments:\n", sBanner);
+-            printf("%s: -a use absolute path to source.\n", sBanner);
++            printf("%s: -a use absolute path to source (default).\n", sBanner);
+             printf("%s: -e give error if source does not exist "
+                 "(default is warning only).\n", sBanner);
+             printf("%s: -f force installation even if destination is more recent.\n", sBanner);
+             printf("%s: -h print this message.\n", sBanner);
+-            printf("%s: -r use relative path to source (default).\n", sBanner);
++            printf("%s: -r use relative path to source.\n", sBanner);
+             printf("%s: -s silent operation (errors still reported).\n",
+                 sBanner);
+             printf("%s: -v version information.\n", sBanner);

@@ -13,7 +13,7 @@ source:
     - Fix_BSUF_autoconf_variable.patch  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [not win]
   ignore_run_exports:
     - ucrt  # [win]
