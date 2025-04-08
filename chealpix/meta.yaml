@@ -12,7 +12,7 @@ source:
     - Fix_link_on_windows.patch  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [not win]
   ignore_run_exports:
     - ucrt  # [win]
