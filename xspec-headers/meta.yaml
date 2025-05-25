@@ -1,4 +1,4 @@
-{% set name = "xspec-devel" %}
+{% set name = "xspec-headers" %}
 {% set version = "12.15.0" %}
 
 package:
@@ -6,14 +6,14 @@ package:
   version: {{ version }}
 
 source:
-  url: https://heasarc.gsfc.nasa.gov/FTP/software/conda/source/heasoft-6.35.1.tar.gz
-  sha256: ec9e5b69906d13e2863d9711ce96be018cb7220d73b77cbc2c945491a29428f4
+  url: https://heasarc.gsfc.nasa.gov/FTP/software/conda/source/heasoft-6.35.1b.tar.gz
+  sha256: beaee8e4292b249fc29722fbc71a7e4d34d25b49cb228538eb5b672c08b21132
   patches:
     - Fix_hd_install.patch  # [win]
     - Fix_BSUF_autoconf_variable.patch  # [win]
 
 build:
-  number: 1
+  number: 0
   skip: True  # [not win]
   ignore_run_exports:
     - ucrt  # [win]
@@ -33,5 +33,5 @@ requirements:
 about:
   home: https://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/
   summary: An X-Ray Spectral Fitting Package
-  license: Unlicense AND MIT
+  license: Unlicense
   license_file: README.md
