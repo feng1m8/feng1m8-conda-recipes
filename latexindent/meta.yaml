@@ -1,0 +1,28 @@
+{% set name = "latexindent" %}
+{% set version = "3.24.5" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/cmhughes/{{ name }}.pl/releases/download/V{{ version }}/{{ name }}.zip
+  sha256: 309ff155fd095d33eed977e1369485d29952b7be5bd9b306d82f627a2f796c32
+
+build:
+  number: 0
+  skip: True  # [not win]
+  ignore_run_exports:
+    - perl  # [win]
+
+requirements:
+  host:
+    - perl 5.32
+
+about:
+  home: https://github.com/cmhughes/latexindent.pl
+  summary: Script to indent LaTeX code
+  license: GPL-3.0-or-later
+  license_family: GPL
+  license_file:
+    - {{ LIBRARY_PREFIX }}/lib/Software/License/GPL_3.pm
