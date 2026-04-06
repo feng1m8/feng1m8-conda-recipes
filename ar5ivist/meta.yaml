@@ -1,5 +1,5 @@
 {% set name = "ar5ivist" %}
-{% set version = "0.3.0" %}
+{% set version = "0.4.0" %}
 
 package:
   name: {{ name }}
@@ -7,24 +7,14 @@ package:
 
 source:
   url: https://github.com/dginev/ar5iv-bindings/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 888e9d0283efea150c6eebe28973b9d3f4f5d9731e0d31c6281ae27b198fa4a9
+  sha256: fb869ee612134f0bf6b4052a9d558131440aa40be59c81680f264147cc0f6ee7
 
 build:
   number: 0
   skip: True  # [not win]
-  ignore_run_exports:
-    - ucrt  # [win]
-    - vc  # [win]
-    - vc14_runtime  # [win]
 
 requirements:
-  build:
-    - clang_win-64
-    - clangxx_win-64
-  host:
-    - perl 5.32
   run:
-    - perl 5.32
     - perl-latexml
     - miktex
 
