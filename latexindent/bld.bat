@@ -1,1 +1,1 @@
-copy /y %SRC_DIR%\bin\windows\latexindent.exe %LIBRARY_PREFIX%\bin
+copy /y %SRC_DIR%\latexindent.exe %LIBRARY_PREFIX%\bin\latexindent.exe

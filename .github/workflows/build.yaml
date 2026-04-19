@@ -17,17 +17,22 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - run: rmdir /s /q C:\Strawberry
+    defaults:
+      run:
         shell: cmd
+    steps:
+      - name: Remove Strawberry Perl
+        run: rmdir /s /q C:\Strawberry
+
+      - uses: actions/checkout@v6
+        with: 
+          sparse-checkout: ${{ github.event.inputs.package }}
 
       - uses: conda-incubator/setup-miniconda@v3
         with:
-          auto-activate-base: true
+          auto-activate: true
           activate-environment: ""
-          miniforge-version: latest
+          auto-update-conda: true
           channels: conda-forge,feng1m8
           conda-remove-defaults: "true"
 
@@ -35,7 +40,7 @@ jobs:
 
       - run: conda build ${{ github.event.inputs.package }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: ${{ github.event.inputs.package }}-${{ github.event.inputs.version }}
-          path: C:/Users/runneradmin/miniconda3/conda-bld/win-64/*.conda
+          path: C:\Miniconda\conda-bld\*\*.conda
