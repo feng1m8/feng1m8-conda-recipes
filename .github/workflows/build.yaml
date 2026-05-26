@@ -1,6 +1,6 @@
-name: Build
+name: Build on Windows
 
-run-name: Build ${{ github.event.inputs.package }} ${{ github.event.inputs.version }}
+run-name: ${{ github.event.inputs.package }} ${{ github.event.inputs.version }}
 
 on:
   workflow_dispatch:
@@ -28,19 +28,18 @@ jobs:
         with: 
           sparse-checkout: ${{ github.event.inputs.package }}
 
-      - uses: conda-incubator/setup-miniconda@v3
+      - uses: conda-incubator/setup-miniconda@v4
         with:
           auto-activate: true
           activate-environment: ""
           auto-update-conda: true
+          conda-build-version: "*"
           channels: conda-forge,feng1m8
           conda-remove-defaults: "true"
-
-      - run: conda install conda-build --yes
 
       - run: conda build ${{ github.event.inputs.package }}
 
       - uses: actions/upload-artifact@v7
         with:
           name: ${{ github.event.inputs.package }}-${{ github.event.inputs.version }}
-          path: C:\Miniconda\conda-bld\*\*.conda
+          path: ${{ env.CONDA }}\conda-bld\win-64\*.conda
